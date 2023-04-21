@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.brfpb.mapper.TBrfpbMapper">
+    
+    <resultMap type="TBrfpb" id="TBrfpbResult">
+        <result property="brtjh"    column="brtjh"    />
+        <result property="brxm"    column="brxm"    />
+        <result property="brsfz"    column="brsfz"    />
+        <result property="brdh"    column="brdh"    />
+        <result property="czgh"    column="czgh"    />
+        <result property="czrxm"    column="czrxm"    />
+        <result property="czsj"    column="czsj"    />
+        <result property="ksmc"    column="ksmc"    />
+        <result property="ksdm"    column="ksdm"    />
+        <result property="ysgh"    column="ysgh"    />
+        <result property="ysxm"    column="ysxm"    />
+        <result property="ysdpsj"    column="ysdpsj"    />
+        <result property="ysdpjg"    column="ysdpjg"    />
+        <result property="ysdpxgsj"    column="ysdpxgsj"    />
+        <result property="sfdppb"    column="sfdppb"    />
+        <result property="sftqjgpb"    column="sftqjgpb"    />
+    </resultMap>
+
+    <sql id="selectTBrfpbVo">
+        select brtjh, brxm, brsfz, brdh, czgh, czrxm, czsj, ksmc, ksdm, ysgh, ysxm, ysdpsj, ysdpjg, ysdpxgsj, sfdppb, sftqjgpb from t_brfpb
+    </sql>
+
+    <select id="selectTBrfpbList" parameterType="TBrfpb" resultMap="TBrfpbResult">
+        <include refid="selectTBrfpbVo"/>
+        <where>  
+            <if test="brxm != null  and brxm != ''"> and brxm = #{brxm}</if>
+            <if test="brsfz != null  and brsfz != ''"> and brsfz = #{brsfz}</if>
+            <if test="brdh != null  and brdh != ''"> and brdh = #{brdh}</if>
+            <if test="czgh != null  and czgh != ''"> and czgh = #{czgh}</if>
+            <if test="czrxm != null  and czrxm != ''"> and czrxm = #{czrxm}</if>
+            <if test="czsj != null "> and czsj = #{czsj}</if>
+            <if test="ksmc != null  and ksmc != ''"> and ksmc = #{ksmc}</if>
+            <if test="ksdm != null "> and ksdm = #{ksdm}</if>
+            <if test="ysgh != null  and ysgh != ''"> and ysgh = #{ysgh}</if>
+            <if test="ysxm != null  and ysxm != ''"> and ysxm = #{ysxm}</if>
+            <if test="ysdpsj != null "> and ysdpsj = #{ysdpsj}</if>
+            <if test="ysdpjg != null  and ysdpjg != ''"> and ysdpjg = #{ysdpjg}</if>
+            <if test="ysdpxgsj != null "> and ysdpxgsj = #{ysdpxgsj}</if>
+            <if test="sfdppb != null "> and sfdppb = #{sfdppb}</if>
+            <if test="sftqjgpb != null "> and sftqjgpb = #{sftqjgpb}</if>
+        </where>
+    </select>
+    
+    <select id="selectTBrfpbByBrtjh" parameterType="String" resultMap="TBrfpbResult">
+        <include refid="selectTBrfpbVo"/>
+        where brtjh = #{brtjh}
+    </select>
+        
+    <insert id="insertTBrfpb" parameterType="TBrfpb">
+        insert into t_brfpb
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="brtjh != null">brtjh,</if>
+            <if test="brxm != null">brxm,</if>
+            <if test="brsfz != null">brsfz,</if>
+            <if test="brdh != null">brdh,</if>
+            <if test="czgh != null">czgh,</if>
+            <if test="czrxm != null">czrxm,</if>
+            <if test="czsj != null">czsj,</if>
+            <if test="ksmc != null">ksmc,</if>
+            <if test="ksdm != null">ksdm,</if>
+            <if test="ysgh != null">ysgh,</if>
+            <if test="ysxm != null">ysxm,</if>
+            <if test="ysdpsj != null">ysdpsj,</if>
+            <if test="ysdpjg != null">ysdpjg,</if>
+            <if test="ysdpxgsj != null">ysdpxgsj,</if>
+            <if test="sfdppb != null">sfdppb,</if>
+            <if test="sftqjgpb != null">sftqjgpb,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="brtjh != null">#{brtjh},</if>
+            <if test="brxm != null">#{brxm},</if>
+            <if test="brsfz != null">#{brsfz},</if>
+            <if test="brdh != null">#{brdh},</if>
+            <if test="czgh != null">#{czgh},</if>
+            <if test="czrxm != null">#{czrxm},</if>
+            <if test="czsj != null">#{czsj},</if>
+            <if test="ksmc != null">#{ksmc},</if>
+            <if test="ksdm != null">#{ksdm},</if>
+            <if test="ysgh != null">#{ysgh},</if>
+            <if test="ysxm != null">#{ysxm},</if>
+            <if test="ysdpsj != null">#{ysdpsj},</if>
+            <if test="ysdpjg != null">#{ysdpjg},</if>
+            <if test="ysdpxgsj != null">#{ysdpxgsj},</if>
+            <if test="sfdppb != null">#{sfdppb},</if>
+            <if test="sftqjgpb != null">#{sftqjgpb},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTBrfpb" parameterType="TBrfpb">
+        update t_brfpb
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="brxm != null">brxm = #{brxm},</if>
+            <if test="brsfz != null">brsfz = #{brsfz},</if>
+            <if test="brdh != null">brdh = #{brdh},</if>
+            <if test="czgh != null">czgh = #{czgh},</if>
+            <if test="czrxm != null">czrxm = #{czrxm},</if>
+            <if test="czsj != null">czsj = #{czsj},</if>
+            <if test="ksmc != null">ksmc = #{ksmc},</if>
+            <if test="ksdm != null">ksdm = #{ksdm},</if>
+            <if test="ysgh != null">ysgh = #{ysgh},</if>
+            <if test="ysxm != null">ysxm = #{ysxm},</if>
+            <if test="ysdpsj != null">ysdpsj = #{ysdpsj},</if>
+            <if test="ysdpjg != null">ysdpjg = #{ysdpjg},</if>
+            <if test="ysdpxgsj != null">ysdpxgsj = #{ysdpxgsj},</if>
+            <if test="sfdppb != null">sfdppb = #{sfdppb},</if>
+            <if test="sftqjgpb != null">sftqjgpb = #{sftqjgpb},</if>
+        </trim>
+        where brtjh = #{brtjh}
+    </update>
+
+    <delete id="deleteTBrfpbByBrtjh" parameterType="String">
+        delete from t_brfpb where brtjh = #{brtjh}
+    </delete>
+
+    <delete id="deleteTBrfpbByBrtjhs" parameterType="String">
+        delete from t_brfpb where brtjh in 
+        <foreach item="brtjh" collection="array" open="(" separator="," close=")">
+            #{brtjh}
+        </foreach>
+    </delete>
+
+</mapper>

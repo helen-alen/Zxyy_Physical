@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增病人分配')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-brfpb-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">病人姓名：</label>
+                <div class="col-sm-8">
+                    <input name="brxm" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">病人身份证：</label>
+                <div class="col-sm-8">
+                    <input name="brsfz" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">病人电话：</label>
+                <div class="col-sm-8">
+                    <input name="brdh" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">操作工号：</label>
+                <div class="col-sm-8">
+                    <input name="czgh" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">操作人姓名：</label>
+                <div class="col-sm-8">
+                    <input name="czrxm" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">操作时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="czsj" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">科室名称：</label>
+                <div class="col-sm-8">
+                    <input name="ksmc" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">科室代码：</label>
+                <div class="col-sm-8">
+                    <input name="ksdm" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">医生工号：</label>
+                <div class="col-sm-8">
+                    <input name="ysgh" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">医生姓名：</label>
+                <div class="col-sm-8">
+                    <input name="ysxm" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">医生点评时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="ysdpsj" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">医生点评结果：</label>
+                <div class="col-sm-8">
+                    <input name="ysdpjg" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">医生点评结果修改时间：</label>
+                <div class="col-sm-8">
+                    <div class="input-group date">
+                        <input name="ysdpxgsj" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否点评判别：</label>
+                <div class="col-sm-8">
+                    <input name="sfdppb" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">是否提取结果判别：</label>
+                <div class="col-sm-8">
+                    <input name="sftqjgpb" class="form-control" type="text">
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: datetimepicker-js" />
+    <script th:inline="javascript">
+        var prefix = ctx + "system/brfpb"
+        $("#form-brfpb-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-brfpb-add').serialize());
+            }
+        }
+
+        $("input[name='czsj']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='ysdpsj']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+
+        $("input[name='ysdpxgsj']").datetimepicker({
+            format: "yyyy-mm-dd",
+            minView: "month",
+            autoclose: true
+        });
+    </script>
+</body>
+</html>

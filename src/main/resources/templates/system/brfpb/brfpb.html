@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('病人分配列表')" />
+</head>
+<body class="gray-bg">
+     <div class="container-div">
+        <div class="row">
+            <div class="col-sm-12 search-collapse">
+                <form id="formId">
+                    <div class="select-list">
+                        <ul>
+                            <li>
+                                <label>病人姓名：</label>
+                                <input type="text" name="brxm"/>
+                            </li>
+                            <li>
+                                <label>病人身份证：</label>
+                                <input type="text" name="brsfz"/>
+                            </li>
+                            <li>
+                                <label>病人电话：</label>
+                                <input type="text" name="brdh"/>
+                            </li>
+                            <li>
+                                <label>操作工号：</label>
+                                <input type="text" name="czgh"/>
+                            </li>
+                            <li>
+                                <label>操作人姓名：</label>
+                                <input type="text" name="czrxm"/>
+                            </li>
+                            <li>
+                                <label>操作时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择操作时间" name="czsj"/>
+                            </li>
+                            <li>
+                                <label>科室名称：</label>
+                                <input type="text" name="ksmc"/>
+                            </li>
+                            <li>
+                                <label>科室代码：</label>
+                                <input type="text" name="ksdm"/>
+                            </li>
+                            <li>
+                                <label>医生工号：</label>
+                                <input type="text" name="ysgh"/>
+                            </li>
+                            <li>
+                                <label>医生姓名：</label>
+                                <input type="text" name="ysxm"/>
+                            </li>
+                            <li>
+                                <label>医生点评时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择医生点评时间" name="ysdpsj"/>
+                            </li>
+                            <li>
+                                <label>医生点评结果：</label>
+                                <input type="text" name="ysdpjg"/>
+                            </li>
+                            <li>
+                                <label>医生点评结果修改时间：</label>
+                                <input type="text" class="time-input" placeholder="请选择医生点评结果修改时间" name="ysdpxgsj"/>
+                            </li>
+                            <li>
+                                <label>是否点评判别：</label>
+                                <input type="text" name="sfdppb"/>
+                            </li>
+                            <li>
+                                <label>是否提取结果判别：</label>
+                                <input type="text" name="sftqjgpb"/>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+
+            <div class="btn-group-sm" id="toolbar" role="group">
+                <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:brfpb:add">
+                    <i class="fa fa-plus"></i> 添加
+                </a>
+                <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:brfpb:edit">
+                    <i class="fa fa-edit"></i> 修改
+                </a>
+                <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:brfpb:remove">
+                    <i class="fa fa-remove"></i> 删除
+                </a>
+                <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:brfpb:export">
+                    <i class="fa fa-download"></i> 导出
+                </a>
+            </div>
+            <div class="col-sm-12 select-table table-striped">
+                <table id="bootstrap-table"></table>
+            </div>
+        </div>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:brfpb:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:brfpb:remove')}]];
+        var prefix = ctx + "system/brfpb";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+                exportUrl: prefix + "/export",
+                modalName: "病人分配",
+                columns: [{
+                    checkbox: true
+                },
+                {
+                    field: 'brtjh',
+                    title: '病人体检号',
+                    visible: false
+                },
+                {
+                    field: 'brxm',
+                    title: '病人姓名'
+                },
+                {
+                    field: 'brsfz',
+                    title: '病人身份证'
+                },
+                {
+                    field: 'brdh',
+                    title: '病人电话'
+                },
+                {
+                    field: 'czgh',
+                    title: '操作工号'
+                },
+                {
+                    field: 'czrxm',
+                    title: '操作人姓名'
+                },
+                {
+                    field: 'czsj',
+                    title: '操作时间'
+                },
+                {
+                    field: 'ksmc',
+                    title: '科室名称'
+                },
+                {
+                    field: 'ksdm',
+                    title: '科室代码'
+                },
+                {
+                    field: 'ysgh',
+                    title: '医生工号'
+                },
+                {
+                    field: 'ysxm',
+                    title: '医生姓名'
+                },
+                {
+                    field: 'ysdpsj',
+                    title: '医生点评时间'
+                },
+                {
+                    field: 'ysdpjg',
+                    title: '医生点评结果'
+                },
+                {
+                    field: 'ysdpxgsj',
+                    title: '医生点评结果修改时间'
+                },
+                {
+                    field: 'sfdppb',
+                    title: '是否点评判别'
+                },
+                {
+                    field: 'sftqjgpb',
+                    title: '是否提取结果判别'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.brtjh + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.brtjh + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>
