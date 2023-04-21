@@ -11,65 +11,69 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>病人姓名：</label>
-                                <input type="text" name="brxm"/>
+                                <label>病人体检号：</label>
+                                <input type="text" name="brtjh"/>
                             </li>
-                            <li>
-                                <label>病人身份证：</label>
-                                <input type="text" name="brsfz"/>
-                            </li>
-                            <li>
-                                <label>病人电话：</label>
-                                <input type="text" name="brdh"/>
-                            </li>
-                            <li>
-                                <label>操作工号：</label>
-                                <input type="text" name="czgh"/>
-                            </li>
-                            <li>
-                                <label>操作人姓名：</label>
-                                <input type="text" name="czrxm"/>
-                            </li>
-                            <li>
-                                <label>操作时间：</label>
-                                <input type="text" class="time-input" placeholder="请选择操作时间" name="czsj"/>
-                            </li>
-                            <li>
-                                <label>科室名称：</label>
-                                <input type="text" name="ksmc"/>
-                            </li>
-                            <li>
-                                <label>科室代码：</label>
-                                <input type="text" name="ksdm"/>
-                            </li>
-                            <li>
-                                <label>医生工号：</label>
-                                <input type="text" name="ysgh"/>
-                            </li>
-                            <li>
-                                <label>医生姓名：</label>
-                                <input type="text" name="ysxm"/>
-                            </li>
-                            <li>
-                                <label>医生点评时间：</label>
-                                <input type="text" class="time-input" placeholder="请选择医生点评时间" name="ysdpsj"/>
-                            </li>
-                            <li>
-                                <label>医生点评结果：</label>
-                                <input type="text" name="ysdpjg"/>
-                            </li>
-                            <li>
-                                <label>医生点评结果修改时间：</label>
-                                <input type="text" class="time-input" placeholder="请选择医生点评结果修改时间" name="ysdpxgsj"/>
-                            </li>
-                            <li>
-                                <label>是否点评判别：</label>
-                                <input type="text" name="sfdppb"/>
-                            </li>
-                            <li>
-                                <label>是否提取结果判别：</label>
-                                <input type="text" name="sftqjgpb"/>
-                            </li>
+<!--                            <li>-->
+<!--                                <label>病人姓名：</label>-->
+<!--                                <input type="text" name="brxm"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>病人身份证：</label>-->
+<!--                                <input type="text" name="brsfz"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>病人电话：</label>-->
+<!--                                <input type="text" name="brdh"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>操作工号：</label>-->
+<!--                                <input type="text" name="czgh"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>操作人姓名：</label>-->
+<!--                                <input type="text" name="czrxm"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>操作时间：</label>-->
+<!--                                <input type="text" class="time-input" placeholder="请选择操作时间" name="czsj"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>科室名称：</label>-->
+<!--                                <input type="text" name="ksmc"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>科室代码：</label>-->
+<!--                                <input type="text" name="ksdm"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>医生工号：</label>-->
+<!--                                <input type="text" name="ysgh"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>医生姓名：</label>-->
+<!--                                <input type="text" name="ysxm"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>医生点评时间：</label>-->
+<!--                                <input type="text" class="time-input" placeholder="请选择医生点评时间" name="ysdpsj"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>医生点评结果：</label>-->
+<!--                                <input type="text" name="ysdpjg"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>医生点评结果修改时间：</label>-->
+<!--                                <input type="text" class="time-input" placeholder="请选择医生点评结果修改时间" name="ysdpxgsj"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>是否点评判别：</label>-->
+<!--                                <input type="text" name="sfdppb"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <label>是否提取结果判别：</label>-->
+<!--                                <input type="text" name="sftqjgpb"/>-->
+<!--                            </li>-->
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
                                 <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
@@ -117,8 +121,7 @@
                 },
                 {
                     field: 'brtjh',
-                    title: '病人体检号',
-                    visible: false
+                    title: '病人体检号'
                 },
                 {
                     field: 'brxm',

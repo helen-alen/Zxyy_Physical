@@ -1,6 +1,7 @@
 package com.ruoyi.project.system.brfpb.controller;
 
 import java.util.List;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,14 +22,13 @@ import com.ruoyi.framework.web.page.TableDataInfo;
 
 /**
  * 病人分配Controller
- * 
+ *
  * @author helen
  * @date 2023-04-21
  */
 @Controller
 @RequestMapping("/system/brfpb")
-public class TBrfpbController extends BaseController
-{
+public class TBrfpbController extends BaseController {
     private String prefix = "system/brfpb";
 
     @Autowired
@@ -36,8 +36,7 @@ public class TBrfpbController extends BaseController
 
     @RequiresPermissions("system:brfpb:view")
     @GetMapping()
-    public String brfpb()
-    {
+    public String brfpb() {
         return prefix + "/brfpb";
     }
 
@@ -47,8 +46,7 @@ public class TBrfpbController extends BaseController
     @RequiresPermissions("system:brfpb:list")
     @PostMapping("/list")
     @ResponseBody
-    public TableDataInfo list(TBrfpb tBrfpb)
-    {
+    public TableDataInfo list(TBrfpb tBrfpb) {
         startPage();
         List<TBrfpb> list = tBrfpbService.selectTBrfpbList(tBrfpb);
         return getDataTable(list);
@@ -61,8 +59,7 @@ public class TBrfpbController extends BaseController
     @Log(title = "病人分配", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
-    public AjaxResult export(TBrfpb tBrfpb)
-    {
+    public AjaxResult export(TBrfpb tBrfpb) {
         List<TBrfpb> list = tBrfpbService.selectTBrfpbList(tBrfpb);
         ExcelUtil<TBrfpb> util = new ExcelUtil<TBrfpb>(TBrfpb.class);
         return util.exportExcel(list, "病人分配数据");
@@ -72,8 +69,7 @@ public class TBrfpbController extends BaseController
      * 新增病人分配
      */
     @GetMapping("/add")
-    public String add()
-    {
+    public String add() {
         return prefix + "/add";
     }
 
@@ -84,8 +80,7 @@ public class TBrfpbController extends BaseController
     @Log(title = "病人分配", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
-    public AjaxResult addSave(TBrfpb tBrfpb)
-    {
+    public AjaxResult addSave(TBrfpb tBrfpb) {
         return toAjax(tBrfpbService.insertTBrfpb(tBrfpb));
     }
 
@@ -94,8 +89,7 @@ public class TBrfpbController extends BaseController
      */
     @RequiresPermissions("system:brfpb:edit")
     @GetMapping("/edit/{brtjh}")
-    public String edit(@PathVariable("brtjh") String brtjh, ModelMap mmap)
-    {
+    public String edit(@PathVariable("brtjh") String brtjh, ModelMap mmap) {
         TBrfpb tBrfpb = tBrfpbService.selectTBrfpbByBrtjh(brtjh);
         mmap.put("tBrfpb", tBrfpb);
         return prefix + "/edit";
@@ -108,8 +102,7 @@ public class TBrfpbController extends BaseController
     @Log(title = "病人分配", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(TBrfpb tBrfpb)
-    {
+    public AjaxResult editSave(TBrfpb tBrfpb) {
         return toAjax(tBrfpbService.updateTBrfpb(tBrfpb));
     }
 
@@ -118,10 +111,9 @@ public class TBrfpbController extends BaseController
      */
     @RequiresPermissions("system:brfpb:remove")
     @Log(title = "病人分配", businessType = BusinessType.DELETE)
-    @PostMapping( "/remove")
+    @PostMapping("/remove")
     @ResponseBody
-    public AjaxResult remove(String ids)
-    {
+    public AjaxResult remove(String ids) {
         return toAjax(tBrfpbService.deleteTBrfpbByBrtjhs(ids));
     }
 }
