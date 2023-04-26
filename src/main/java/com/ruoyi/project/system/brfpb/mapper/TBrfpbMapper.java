@@ -20,6 +20,15 @@ public interface TBrfpbMapper {
     public TBrfpb selectTBrfpbByBrtjh(String brtjh);
 
     /**
+     * 查询病人分配
+     *
+     * @param czsj 病人分配操作时间
+     * @return 病人分配信息
+     */
+    public TBrfpb selectTBrfpbByCzsj(String czsj);
+
+
+    /**
      * 查询病人分配列表
      *
      * @param tBrfpb 病人分配

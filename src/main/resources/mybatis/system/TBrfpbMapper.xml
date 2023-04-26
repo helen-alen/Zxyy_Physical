@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.project.system.brfpb.mapper.TBrfpbMapper">
-    
+
     <resultMap type="TBrfpb" id="TBrfpbResult">
-        <result property="brtjh"    column="brtjh"    />
-        <result property="brxm"    column="brxm"    />
-        <result property="brsfz"    column="brsfz"    />
-        <result property="brdh"    column="brdh"    />
-        <result property="czgh"    column="czgh"    />
-        <result property="czrxm"    column="czrxm"    />
-        <result property="czsj"    column="czsj"    />
-        <result property="ksmc"    column="ksmc"    />
-        <result property="ksdm"    column="ksdm"    />
-        <result property="ysgh"    column="ysgh"    />
-        <result property="ysxm"    column="ysxm"    />
-        <result property="ysdpsj"    column="ysdpsj"    />
-        <result property="ysdpjg"    column="ysdpjg"    />
-        <result property="ysdpxgsj"    column="ysdpxgsj"    />
-        <result property="sfdppb"    column="sfdppb"    />
-        <result property="sftqjgpb"    column="sftqjgpb"    />
+        <result property="brtjh" column="brtjh"/>
+        <result property="brxm" column="brxm"/>
+        <result property="brsfz" column="brsfz"/>
+        <result property="brdh" column="brdh"/>
+        <result property="czgh" column="czgh"/>
+        <result property="czrxm" column="czrxm"/>
+        <result property="czsj" column="czsj"/>
+        <result property="ksmc" column="ksmc"/>
+        <result property="ksdm" column="ksdm"/>
+        <result property="ysgh" column="ysgh"/>
+        <result property="ysxm" column="ysxm"/>
+        <result property="ysdpsj" column="ysdpsj"/>
+        <result property="ysdpjg" column="ysdpjg"/>
+        <result property="ysdpxgsj" column="ysdpxgsj"/>
+        <result property="sfdppb" column="sfdppb"/>
+        <result property="sftqjgpb" column="sftqjgpb"/>
     </resultMap>
 
     <sql id="selectTBrfpbVo">
@@ -29,30 +29,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="selectTBrfpbList" parameterType="TBrfpb" resultMap="TBrfpbResult">
         <include refid="selectTBrfpbVo"/>
-        <where>  
-            <if test="brxm != null  and brxm != ''"> and brxm = #{brxm}</if>
-            <if test="brsfz != null  and brsfz != ''"> and brsfz = #{brsfz}</if>
-            <if test="brdh != null  and brdh != ''"> and brdh = #{brdh}</if>
-            <if test="czgh != null  and czgh != ''"> and czgh = #{czgh}</if>
-            <if test="czrxm != null  and czrxm != ''"> and czrxm = #{czrxm}</if>
-            <if test="czsj != null "> and czsj = #{czsj}</if>
-            <if test="ksmc != null  and ksmc != ''"> and ksmc = #{ksmc}</if>
-            <if test="ksdm != null "> and ksdm = #{ksdm}</if>
-            <if test="ysgh != null  and ysgh != ''"> and ysgh = #{ysgh}</if>
-            <if test="ysxm != null  and ysxm != ''"> and ysxm = #{ysxm}</if>
-            <if test="ysdpsj != null "> and ysdpsj = #{ysdpsj}</if>
-            <if test="ysdpjg != null  and ysdpjg != ''"> and ysdpjg = #{ysdpjg}</if>
-            <if test="ysdpxgsj != null "> and ysdpxgsj = #{ysdpxgsj}</if>
-            <if test="sfdppb != null "> and sfdppb = #{sfdppb}</if>
-            <if test="sftqjgpb != null "> and sftqjgpb = #{sftqjgpb}</if>
+        <where>
+            <if test="brtjh != null  and brtjh != ''">and brtjh = #{brtjh}</if>
+            <if test="brxm != null  and brxm != ''">and brxm = #{brxm}</if>
+            <if test="brsfz != null  and brsfz != ''">and brsfz = #{brsfz}</if>
+            <if test="brdh != null  and brdh != ''">and brdh = #{brdh}</if>
+            <if test="czgh != null  and czgh != ''">and czgh = #{czgh}</if>
+            <if test="czrxm != null  and czrxm != ''">and czrxm = #{czrxm}</if>
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                AND date_format(czsj,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                AND date_format(czsj,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+<!--            <if test="czsj != null ">and czsj = #{czsj}</if>-->
+            <if test="ksmc != null  and ksmc != ''">and ksmc = #{ksmc}</if>
+            <if test="ksdm != null ">and ksdm = #{ksdm}</if>
+            <if test="ysgh != null  and ysgh != ''">and ysgh = #{ysgh}</if>
+            <if test="ysxm != null  and ysxm != ''">and ysxm = #{ysxm}</if>
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                AND date_format(ysdpsj,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                AND date_format(ysdpsj,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+<!--            <if test="ysdpsj != null ">and ysdpsj = #{ysdpsj}</if>-->
+            <if test="ysdpjg != null  and ysdpjg != ''">and ysdpjg = #{ysdpjg}</if>
+            <if test="ysdpxgsj != null ">and ysdpxgsj = #{ysdpxgsj}</if>
+            <if test="sfdppb != null ">and sfdppb = #{sfdppb}</if>
+            <if test="sftqjgpb != null ">and sftqjgpb = #{sftqjgpb}</if>
         </where>
     </select>
-    
+
     <select id="selectTBrfpbByBrtjh" parameterType="String" resultMap="TBrfpbResult">
         <include refid="selectTBrfpbVo"/>
         where brtjh = #{brtjh}
     </select>
-        
+
+    <select id="selectTBrfpbByCzsj" parameterType="String" resultMap="TBrfpbResult">
+        <include refid="selectTBrfpbVo"/>
+        where czsj = #{czsj}
+    </select>
+
+
     <insert id="insertTBrfpb" parameterType="TBrfpb">
         insert into t_brfpb
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -72,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="ysdpxgsj != null">ysdpxgsj,</if>
             <if test="sfdppb != null">sfdppb,</if>
             <if test="sftqjgpb != null">sftqjgpb,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="brtjh != null">#{brtjh},</if>
             <if test="brxm != null">#{brxm},</if>
@@ -90,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="ysdpxgsj != null">#{ysdpxgsj},</if>
             <if test="sfdppb != null">#{sfdppb},</if>
             <if test="sftqjgpb != null">#{sftqjgpb},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateTBrfpb" parameterType="TBrfpb">
@@ -120,7 +139,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteTBrfpbByBrtjhs" parameterType="String">
-        delete from t_brfpb where brtjh in 
+        delete from t_brfpb where brtjh in
         <foreach item="brtjh" collection="array" open="(" separator="," close=")">
             #{brtjh}
         </foreach>

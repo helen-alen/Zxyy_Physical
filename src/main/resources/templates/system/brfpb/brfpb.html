@@ -11,7 +11,7 @@
                     <div class="select-list">
                         <ul>
                             <li>
-                                <label>病人体检号：</label>
+                                <label>体检号：</label>
                                 <input type="text" name="brtjh"/>
                             </li>
 <!--                            <li>-->
@@ -34,10 +34,12 @@
 <!--                                <label>操作人姓名：</label>-->
 <!--                                <input type="text" name="czrxm"/>-->
 <!--                            </li>-->
-<!--                            <li>-->
-<!--                                <label>操作时间：</label>-->
-<!--                                <input type="text" class="time-input" placeholder="请选择操作时间" name="czsj"/>-->
-<!--                            </li>-->
+                            <li class="select-time">
+                                <label>操作时间：</label>
+                                <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+                                <span>-</span>
+                                <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+                            </li>
 <!--                            <li>-->
 <!--                                <label>科室名称：</label>-->
 <!--                                <input type="text" name="ksmc"/>-->
@@ -54,6 +56,12 @@
 <!--                                <label>医生姓名：</label>-->
 <!--                                <input type="text" name="ysxm"/>-->
 <!--                            </li>-->
+                            <li class="select-time">
+                                <label>点评时间：</label>
+                                <input type="text" class="time-input" id="startTime1" placeholder="开始时间" name="params[beginTime]"/>
+                                <span>-</span>
+                                <input type="text" class="time-input" id="endTime1" placeholder="结束时间" name="params[endTime]"/>
+                            </li>
 <!--                            <li>-->
 <!--                                <label>医生点评时间：</label>-->
 <!--                                <input type="text" class="time-input" placeholder="请选择医生点评时间" name="ysdpsj"/>-->
@@ -127,10 +135,10 @@
                     field: 'brxm',
                     title: '病人姓名'
                 },
-                {
-                    field: 'brsfz',
-                    title: '病人身份证'
-                },
+                // {
+                //     field: 'brsfz',
+                //     title: '病人身份证'
+                // },
                 {
                     field: 'brdh',
                     title: '病人电话'
@@ -151,10 +159,10 @@
                     field: 'ksmc',
                     title: '科室名称'
                 },
-                {
-                    field: 'ksdm',
-                    title: '科室代码'
-                },
+                // {
+                //     field: 'ksdm',
+                //     title: '科室代码'
+                // },
                 {
                     field: 'ysgh',
                     title: '医生工号'
@@ -171,18 +179,18 @@
                     field: 'ysdpjg',
                     title: '医生点评结果'
                 },
-                {
-                    field: 'ysdpxgsj',
-                    title: '医生点评结果修改时间'
-                },
-                {
-                    field: 'sfdppb',
-                    title: '是否点评判别'
-                },
-                {
-                    field: 'sftqjgpb',
-                    title: '是否提取结果判别'
-                },
+                // {
+                //     field: 'ysdpxgsj',
+                //     title: '医生点评结果修改时间'
+                // },
+                // {
+                //     field: 'sfdppb',
+                //     title: '是否点评判别'
+                // },
+                // {
+                //     field: 'sftqjgpb',
+                //     title: '是否提取结果判别'
+                // },
                 {
                     title: '操作',
                     align: 'center',
